@@ -1,13 +1,6 @@
 rackspace-cloudfiles.sh
 =======================
 
-Bash script that provides command-line interface to Rackspace Cloud Files 
-and includes multi-region support.
-
-
-DESCRIPTION
------------
-
 rackspace-cloudfiles.sh is a bash script that provides command-line 
 interface to Rackspace Cloud Files and includes multi-region support.  
 
