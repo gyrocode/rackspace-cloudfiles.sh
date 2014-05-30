@@ -274,7 +274,7 @@ if [[ ${SERVICENET} == Y || ${SERVICENET} == y ]]; then
 fi
 
 
-AUTH_TOKEN=$(echo -e "setns ns=http://docs.rackspacecloud.com/auth/api/v1.1\ncat /ns:auth/ns:token/@id" | xmllint -shell ${XML_AUTH_RESP} | grep -v ">" | cut -f 2 -d "=" | tr -d \");
+AUTH_TOKEN=$(echo -e "setns ns=http://docs.rackspacecloud.com/auth/api/v1.1\ncat /ns:auth/ns:token/@id" | xmllint -shell ${XML_AUTH_RESP} | grep -v '>' | grep -v -e '^\s-------$' | cut -f 2 -d "=" | tr -d \");
 if [[ -z ${AUTH_TOKEN} ]]; then
    rm -f ${XML_AUTH_RESP}
    if [[ -z ${QUIET} ]]; then
@@ -283,7 +283,7 @@ if [[ -z ${AUTH_TOKEN} ]]; then
    exit 1
 fi
 
-ENDPOINT_URL=$(echo -e "setns ns=http://docs.rackspacecloud.com/auth/api/v1.1\ncat /ns:auth/ns:serviceCatalog/ns:service[@name='cloudFiles']/ns:endpoint[@region='$REGION']/@$XML_ATTR_URL" | xmllint -shell ${XML_AUTH_RESP} | grep -v ">" | cut -f 2 -d "=" | tr -d \");
+ENDPOINT_URL=$(echo -e "setns ns=http://docs.rackspacecloud.com/auth/api/v1.1\ncat /ns:auth/ns:serviceCatalog/ns:service[@name='cloudFiles']/ns:endpoint[@region='$REGION']/@$XML_ATTR_URL" | xmllint -shell ${XML_AUTH_RESP} | grep -v '>' | grep -v -e '^\s-------$' | cut -f 2 -d "=" | tr -d \");
 if [[ -z ${ENDPOINT_URL} ]]; then
    rm -f ${XML_AUTH_RESP}
    if [[ -z ${QUIET} ]]; then
